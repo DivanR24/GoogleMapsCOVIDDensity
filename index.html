@@ -4,12 +4,42 @@
 <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 <title>Google Maps - gmplot</title>
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=visualization&key=AIzaSyD7k0YLCtod0NTuxmBMej0Cf70LdCzZSx4"></script>
+
+</script>
 <script type="text/javascript">
+
+
+function getLocation() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(showPosition);
+  } 
+}
+
+function showPosition(position) {
+  self_latitude = position.coords.latitude;
+  self_longitude = position.coords.longitude;
+  new google.maps.Circle({
+            strokeColor: '#0000FF',
+            strokeOpacity: 1.0,
+            strokeWeight: 1,
+            fillColor: '#0000FF',
+            fillOpacity: 1.0,
+            map: map,
+            center: new google.maps.LatLng(self_latitude, self_longitude),
+            radius: 100
+        });
+}
+
+
+
+
     function initialize() {
         var map = new google.maps.Map(document.getElementById("map_canvas"), {
             zoom: 16,
             center: new google.maps.LatLng(40.721643, -74.070558)
         });
+
+        getLocation()
 
         new google.maps.Circle({
             strokeColor: '#FF0000',
@@ -32933,6 +32963,7 @@
             center: new google.maps.LatLng(40.71614338, -74.10375487),
             radius: 14
         });
+
 
         new google.maps.Circle({
             strokeColor: '#FF0000',
